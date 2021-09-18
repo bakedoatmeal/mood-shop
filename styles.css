@@ -29,9 +29,8 @@ body {
   }
 
 .items {
-  width: 80%;
+  width: 90%;
   margin: auto;
-
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1em;
@@ -46,5 +45,18 @@ body {
 
 .item {
   border-style: solid;
+  border-color: beige;
+  color: #472c06;
   padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.item button {
+  justify-self: center;
+  border-style: none;
+  background-color: #1e6241;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
 }
