@@ -25,4 +25,11 @@ for (let i = 0; i < data.length; i += 1) {
     const price = document.createElement('p')
     price.innerHTML = data[i].price
     newDiv.appendChild(price)
+    //stretch goal: use forEach
+
+    const button = document.createElement('button')
+    button.id = data[i].name
+    button.dataset.price = data[i].price
+    button.innerHTML = 'Add to Cart'
+    newDiv.appendChild(button)
 }

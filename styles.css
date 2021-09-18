@@ -27,3 +27,24 @@ body {
     text-decoration:none;
     color: white;
   }
+
+.items {
+  width: 80%;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em;
+  margin: 20px;
+  
+}
+
+.items img {
+  width: 100%;
+  height: auto;
+}
+
+.item {
+  border-style: solid;
+  padding: 8px;
+}
