@@ -78,5 +78,22 @@ function showItems(){
     console.log (`total in cart: $${getTotal()}`)
 }
 
+function removeItem(name, qty = 0) {
+    for (let i = 0; i < cart.length; i += 1) {
+        if (name === cart[i].name){
+            if (qty > 0) {
+                cart[i].qty -= qty
+            }
+            if (cart[i].qty < 1 || qty === 0){
+                cart.splice(i, 1)
+            }
+            return
+        }
+    }
+}
+
 addItem('happiness', 0.99);
+addItem('happiness', 0.99);
+addItem('moody', 0.99);
+removeItem('happiness')
 showItems()
