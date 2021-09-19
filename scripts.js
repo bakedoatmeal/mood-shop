@@ -15,12 +15,12 @@ for (let i = 0; i < data.length; i += 1) {
 	img.height = 300
 	// Add the image to the div
 	newDiv.appendChild(img)
-	console.log(img) // Check the console!
+	//console.log(img) // Check the console!
 	itemsContainer.appendChild(newDiv)
 
     const desc = document.createElement('P')
     desc.innerText = data[i].desc
-    console.log(data[i].desc)
+    //console.log(data[i].desc)
     newDiv.appendChild(desc)
     const price = document.createElement('p')
     price.innerHTML = data[i].price
@@ -33,3 +33,17 @@ for (let i = 0; i < data.length; i += 1) {
     button.innerHTML = 'Add to Cart'
     newDiv.appendChild(button)
 }
+
+const cart = []
+const obj = {}
+
+function addItem(name, price){
+    const item = {name: name, price: price, qty: 1}
+    cart.push(item)
+}
+function showItems(){
+    console.log(cart)
+}
+
+addItem('happiness', 0.99);
+showItems()
