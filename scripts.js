@@ -38,11 +38,44 @@ const cart = []
 const obj = {}
 
 function addItem(name, price){
-    const item = {name: name, price: price, qty: 1}
-    cart.push(item)
+    for (let i=0; i< cart.length; i +=1) {
+        if (name === cart[i].name) {
+            cart[i].qty += 1
+            return
+        }
+    }
+    const item = {name, price, qty: 1}
+    cart.push(item)    
 }
+
+function getQty () {
+    let qty = 0
+    for (let i = 0; i< cart.length; i +=1 ) {
+        qty += cart[i].qty
+    }
+    return qty
+
+ }
+
+function getTotal () {
+    let total = 0
+    for (let i = 0; i< cart.length; i +=1 ) {
+        total += cart[i].qty * cart[i].price
+    }
+    return total.toFixed(2)
+}
+
 function showItems(){
-    console.log(cart)
+
+    console.log(`You have ${getQty()} items in your cart`)
+    for (let i = 0; i < cart.length; i += 1) {
+        console.log(`${cart[i].name} $${cart[i].price} x ${cart[i].qty}`)
+    }
+    let total = 0
+    for (let i = 0; i< cart.length; i +=1 ) {
+        total += cart[i].qty * cart[i].price
+    }
+    console.log (`total in cart: $${getTotal()}`)
 }
 
 addItem('happiness', 0.99);
