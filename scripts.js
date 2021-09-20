@@ -11,6 +11,9 @@ for (let i = 0; i < data.length; i += 1) {
 	const newDiv = document.createElement('div');
 	newDiv.className = 'item'
 	// create an image element
+    const label = document.createElement('h1')
+    label.innerHTML = data[i].name
+    newDiv.appendChild(label)
 	const img = document.createElement('img');
 	// this will change each time we go through the loop. Can you explain why?
 	img.src = data[i].image
@@ -86,18 +89,18 @@ function showItems(){
         itemStr += `<li> 
             ${name} 
             ${price} x ${qty} = 
-            $${qty * price}</li>
+            $${qty * price}
             <button class="remove" data-name="${name}"> Remove </button>
             <button class="add-one" data-name="${name}"> + </button>
             <button class="remove-one" data-name="${name}"> - </button>
-            <input class="update" type="number" min="0" data-name="${name}">`
+            <input class="update" type="number" min="0" data-name="${name}"> </li>`
 
     }
     let total = 0
     for (let i = 0; i< cart.length; i +=1 ) {
         total += cart[i].qty * cart[i].price
     }
-    cartTotal.innerHTML = `total in cart: $${getTotal()}`
+    cartTotal.innerHTML = `Total in cart: $${getTotal()}`
 
     itemList.innerHTML = itemStr
 }
