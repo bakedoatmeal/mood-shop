@@ -47,6 +47,7 @@ function addItem(name, price){
     for (let i=0; i< cart.length; i +=1) {
         if (name === cart[i].name) {
             cart[i].qty += 1
+            showItems()
             return
         }
     }
@@ -85,7 +86,11 @@ function showItems(){
         itemStr += `<li> 
             ${name} 
             ${price} x ${qty} = 
-            $${qty * price}</li>`
+            $${qty * price}</li>
+            <button class="remove" data-name="${name}"> Remove </button>
+            <button class="add-one" data-name="${name}"> + </button>
+            <button class="remove-one" data-name="${name}"> - </button>
+            <input class="update" type="number" min="0" data-name="${name}">`
 
     }
     let total = 0
@@ -106,9 +111,26 @@ function removeItem(name, qty = 0) {
             if (cart[i].qty < 1 || qty === 0){
                 cart.splice(i, 1)
             }
+            showItems()
             return
         }
     }
+}
+
+function updateCart(name, qty) {
+    for (let i=0; i < cart.length; i+= 1) {
+        if (name === cart[i].name){
+            if (qty > 0) {
+                cart[i].qty = qty
+                showItems()
+                return
+            } else {
+                removeItem(name)
+                return
+            }
+        }
+    }
+    showItems()
 }
 
 all_items_button.forEach(elt => elt.addEventListener('click', () => {
@@ -116,6 +138,29 @@ all_items_button.forEach(elt => elt.addEventListener('click', () => {
     showItems()
   }))
 
+itemList.onclick = function (e) {
+    console.log("Clicked list!")
+    if (e.target && e.target.classList.contains('remove')){
+        const name = e.target.dataset.name
+        removeItem(name)
+    } else if (e.target && e.target.classList.contains('add-one')) {
+        const name = e.target.dataset.name
+        addItem(name)
+
+
+    } else if (e.target && e.target.classList.contains('remove-one')) {
+        const name = e.target.dataset.name
+        removeItem(name, 1)
+    }
+}
+
+itemList.onchange = function(e) {
+    if (e.target && e.target.classList.contains('update')) {
+        const name = e.target.dataset.name
+        const qty = parseInt(e.target.value)
+        updateCart(name, qty)
+    }
+}
 addItem('happiness', 0.99);
 addItem('happiness', 0.99);
 addItem('moody', 0.99);
