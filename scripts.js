@@ -5,7 +5,6 @@ const itemList = document.getElementById('item-list')
 const cartQty = document.getElementById('cart-qty')
 const cartTotal = document.getElementById('cart-total')
 
-
 // the length of our data determines how many times this loop goes around
 for (let i = 0; i < data.length; i += 1) {
 	// create a new div element and give it a class name
@@ -37,6 +36,9 @@ for (let i = 0; i < data.length; i += 1) {
     button.innerHTML = 'Add to Cart'
     newDiv.appendChild(button)
 }
+
+const all_items_button = Array.from(document.querySelectorAll("button"))
+console.log(all_items_button)
 
 const cart = []
 const obj = {}
@@ -108,6 +110,11 @@ function removeItem(name, qty = 0) {
         }
     }
 }
+
+all_items_button.forEach(elt => elt.addEventListener('click', () => {
+    addItem(elt.getAttribute('id'), elt.getAttribute('data-price'))
+    showItems()
+  }))
 
 addItem('happiness', 0.99);
 addItem('happiness', 0.99);
